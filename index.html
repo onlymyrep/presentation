@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Презентация-магия ✨</title>
+    <title>10 волшебных слайдов ✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -72,6 +72,7 @@
             opacity: 0;
             padding: 40px;
             color: var(--text);
+            overflow-y: auto; /* на случай, если контента много */
         }
 
         .slide.active {
@@ -80,7 +81,7 @@
         }
 
         .slide h1 {
-            font-size: 3em;
+            font-size: 2.8em;
             font-weight: 700;
             margin-bottom: 20px;
             color: #2c3e50;
@@ -96,6 +97,16 @@
             font-size: 1.2em;
             line-height: 1.6;
             max-width: 600px;
+        }
+
+        /* Стили для изображений на слайдах */
+        .slide img {
+            max-width: 80%;
+            max-height: 50vh;
+            border-radius: 20px;
+            box-shadow: 13px 13px 26px var(--shadow-dark),
+                        -13px -13px 26px var(--shadow-light);
+            margin: 20px 0;
         }
 
         .controls {
@@ -151,25 +162,62 @@
     <canvas id="dissolve-canvas"></canvas>
 
     <div class="slides-container">
+        <!-- Слайд 0 -->
         <div class="slide active" id="slide0">
-            <h1>Привет, новенькая! ✨</h1>
-            <p>Эта презентация оживёт, как в <strong>Мстителях: Финал</strong>.<br>Сейчас увидишь магию…</p>
+            <h1>Твоя презентация ✨</h1>
+            <p>10 слайдов в стиле <strong>мягкого неоморфизма</strong><br>с эффектом из «Мстителей».</p>
         </div>
+        <!-- Слайд 1 -->
         <div class="slide" id="slide1">
-            <h2>Нежный неоморфизм</h2>
-            <p>Мягкие тени, 3D-подушечки и светлая палитра —<br>глаз радуется, а контент дышит.</p>
+            <h2>Как это выглядит</h2>
+            <p>Мягкие тени, трёхмерные формы,<br>приятная цветовая гамма.</p>
         </div>
+        <!-- Слайд 2 -->
         <div class="slide" id="slide2">
             <h2>Растворение в пыль</h2>
-            <p>При перелистывании слайд разбивается на тысячи частиц<br>и исчезает, как после щелчка Таноса.</p>
+            <p>При перелистывании слайд рассыпается<br>на тысячи частиц.</p>
         </div>
+        <!-- Слайд 3 -->
         <div class="slide" id="slide3">
-            <h2>Готово к вдохновению</h2>
-            <p>Нажми на кнопку или клавишу «вправо»,<br>и твоя история станет волшебной.</p>
+            <h2>Пример со скриншотом</h2>
+            <!-- Вместо этого placeholder'а вставь свой скриншот -->
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23d1d9e6'/%3E%3Ctext x='200' y='135' font-family='Nunito' font-size='24' fill='%235b6e7e' text-anchor='middle'%3EТвой скриншот%3C/text%3E%3C/svg%3E" 
+                 alt="Пример скриншота">
+            <p>Сюда можно вставить любой скриншот<br>или изображение.</p>
+        </div>
+        <!-- Слайд 4 -->
+        <div class="slide" id="slide4">
+            <h2>Простота редактирования</h2>
+            <p>Текст и картинки меняются<br>прямо в HTML-коде.</p>
+        </div>
+        <!-- Слайд 5 -->
+        <div class="slide" id="slide5">
+            <h2>Адаптивность</h2>
+            <p>Отлично смотрится на телефоне,<br>планшете и компьютере.</p>
+        </div>
+        <!-- Слайд 6 -->
+        <div class="slide" id="slide6">
+            <h2>Никакого интернета</h2>
+            <p>Презентация работает полностью офлайн,<br>даже эффект частиц.</p>
+        </div>
+        <!-- Слайд 7 -->
+        <div class="slide" id="slide7">
+            <h2>Легко задеплоить</h2>
+            <p>Загрузи на GitHub Pages —<br>и получишь ссылку для всех.</p>
+        </div>
+        <!-- Слайд 8 -->
+        <div class="slide" id="slide8">
+            <h2>Настрой свой стиль</h2>
+            <p>Меняй цвета, шрифты, размеры<br>в блоке :root.</p>
+        </div>
+        <!-- Слайд 9 -->
+        <div class="slide" id="slide9">
+            <h2>Вперёд к волшебству!</h2>
+            <p>Теперь ты можешь удивлять<br>своих зрителей.</p>
         </div>
     </div>
 
-    <div class="indicator" id="indicator">Слайд 1 / 4</div>
+    <div class="indicator" id="indicator">Слайд 1 / 10</div>
     <div class="controls">
         <button class="btn" id="prevBtn">← Назад</button>
         <button class="btn" id="nextBtn">Вперёд →</button>
@@ -185,7 +233,7 @@
             const indicator = document.getElementById('indicator');
             let isAnimating = false;
 
-            // Стили для частиц полностью соответствуют неоморфной теме
+            // Цвета частиц под стать неоморфизму
             const particleColors = [
                 '#ecf0f3', '#d1d9e6', '#ffffff', '#8b9dc3', '#5b6e7e', '#2c3e50'
             ];
@@ -208,25 +256,21 @@
 
                 isAnimating = true;
 
-                // Подготавливаем canvas на весь экран
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 canvas.style.display = 'block';
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                // Частицы разлетаются из центра
                 const cx = canvas.width / 2;
                 const cy = canvas.height / 2;
                 const particles = [];
-                const count = 3000; // количество частиц
+                const count = 3000;
 
                 for (let i = 0; i < count; i++) {
                     const angle = Math.random() * Math.PI * 2;
-                    const distance = 50 + Math.random() * 300;
                     const speed = 2 + Math.random() * 8;
                     const color = particleColors[Math.floor(Math.random() * particleColors.length)];
                     const size = 2 + Math.random() * 6;
-
                     particles.push({
                         x: cx + (Math.random() - 0.5) * 200,
                         y: cy + (Math.random() - 0.5) * 100,
@@ -239,14 +283,13 @@
                     });
                 }
 
-                // Меняем слайды сразу, но под холстом
+                // Переключаем слайды под холстом
                 slides[currentIndex].classList.remove('active');
                 slides[targetIndex].classList.add('active');
 
                 function animate() {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     let alive = false;
-
                     particles.forEach(p => {
                         p.x += p.vx;
                         p.y += p.vy;
@@ -258,7 +301,6 @@
                             ctx.fillRect(p.x, p.y, p.size, p.size);
                         }
                     });
-
                     if (alive) {
                         requestAnimationFrame(animate);
                     } else {
@@ -269,7 +311,6 @@
                         isAnimating = false;
                     }
                 }
-
                 animate();
             }
 

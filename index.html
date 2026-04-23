@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оценка промпт‑инжиниринга — процесс</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Оценка промпт‑инжиниринга ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #edf0f3;
-            --shadow-dark: #c4c9d1;
-            --shadow-light: #ffffff;
-            --text: #2c2f36;
-            --accent: #b48ead;   /* пыльно-розовый, деликатный */
-            --radius: 28px;
+            --bg: #1e1b2e;
+            --shadow-dark: #15121f;
+            --shadow-light: #2b2540;
+            --text: #d9d0f0;
+            --accent: #f0a8c0;
+            --radius: 30px;
         }
 
         * {
@@ -24,7 +24,7 @@
 
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: var(--bg);
+            background: linear-gradient(145deg, #2a2440 0%, #15121f 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -35,26 +35,25 @@
             position: relative;
         }
 
-        /* Едва заметные пятна для глубины */
         body::before {
             content: '';
             position: fixed;
-            top: -10%;
-            left: -5%;
-            width: 50%;
-            height: 70%;
-            background: radial-gradient(circle at 30% 40%, rgba(180, 142, 173, 0.06) 0%, transparent 60%);
+            top: -20%;
+            left: -10%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(circle at 30% 40%, rgba(240, 168, 192, 0.15) 0%, transparent 60%);
             pointer-events: none;
             z-index: 0;
         }
         body::after {
             content: '';
             position: fixed;
-            bottom: -10%;
+            bottom: -15%;
             right: -5%;
-            width: 60%;
-            height: 60%;
-            background: radial-gradient(circle at 70% 60%, rgba(150, 160, 180, 0.05) 0%, transparent 60%);
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle at 70% 60%, rgba(139, 157, 195, 0.08) 0%, transparent 60%);
             pointer-events: none;
             z-index: 0;
         }
@@ -72,10 +71,10 @@
 
         .slides-container {
             position: relative;
-            width: 92%;
-            max-width: 960px;
-            height: 88vh;
-            max-height: 750px;
+            width: 95%;
+            max-width: none;
+            height: 90vh;
+            max-height: none;
             z-index: 1;
         }
 
@@ -91,15 +90,15 @@
             justify-content: center;
             text-align: center;
             border-radius: var(--radius);
-            background: var(--bg);
-            box-shadow: 22px 22px 44px var(--shadow-dark),
-                        -22px -22px 44px var(--shadow-light);
+            background: var(--slide-bg, var(--bg));
+            box-shadow: 18px 18px 36px var(--shadow-dark),
+                        -18px -18px 36px var(--shadow-light);
             transition: opacity 0.3s ease;
             visibility: hidden;
             opacity: 0;
-            padding: 40px 30px;
+            padding: 40px;
             color: var(--text);
-            overflow: hidden;
+            overflow-y: auto;
         }
 
         .slide.active {
@@ -107,89 +106,102 @@
             opacity: 1;
         }
 
-        /* Рукописный шрифт для заголовков */
-        .slide h1, .slide h2, .slide .handwritten {
-            font-family: 'Caveat', cursive;
-            font-weight: 700;
+        /* Каллиграфический шрифт для заголовков и акцентов */
+        .slide h1, .slide h2, .handwritten, .step-card h3 {
+            font-family: 'Marck Script', cursive;
+            font-weight: 400;
         }
 
         .slide h1 {
             font-size: 4.2em;
             margin-bottom: 20px;
-            color: #1f2228;
+            color: #fff;
             letter-spacing: 1px;
+            line-height: 1.2;
         }
 
         .slide h2 {
             font-size: 2.8em;
-            margin-bottom: 25px;
-            color: #2c2f36;
+            margin-bottom: 20px;
+            color: #f0eaff;
         }
 
-        .slide .subtitle {
-            font-size: 1.25em;
-            color: #4a4f59;
-            margin-top: 15px;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 400;
+        .slide p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            max-width: 600px;
+            color: #cbc3e8;
         }
 
-        /* Вдавленный блок (стиль из первого слайда) */
-        .inset-block {
-            background: var(--bg);
+        .inset-box {
+            background: var(--slide-bg, var(--bg));
             border-radius: 25px;
-            padding: 24px 42px;
-            margin: 25px auto;
-            max-width: 680px;
-            box-shadow: inset 9px 9px 18px var(--shadow-dark),
-                        inset -9px -9px 18px var(--shadow-light);
-            font-size: 1.3em;
-            color: #2c2f36;
-            line-height: 1.5;
+            padding: 20px 30px;
+            margin: 20px 0;
+            box-shadow: inset 8px 8px 16px var(--shadow-dark),
+                        inset -8px -8px 16px var(--shadow-light);
+            max-width: 600px;
+            font-size: 1.2em;
         }
 
-        /* Выпуклая карточка (для шагов) */
         .step-card {
-            background: var(--bg);
-            border-radius: var(--radius);
-            padding: 30px 35px;
-            margin: 10px auto;
+            background: var(--slide-bg, var(--bg));
+            border-radius: 25px;
+            padding: 25px 35px;
+            margin: 20px auto;
             max-width: 650px;
-            box-shadow: 14px 14px 28px var(--shadow-dark),
-                        -14px -14px 28px var(--shadow-light);
+            box-shadow: 12px 12px 24px var(--shadow-dark),
+                        -12px -12px 24px var(--shadow-light);
             text-align: left;
-            font-size: 1.15em;
-            color: #2c2f36;
+            font-size: 1.1em;
+            color: #d9d0f0;
             line-height: 1.5;
         }
 
         .step-card h3 {
-            font-family: 'Caveat', cursive;
-            font-size: 2em;
-            margin-bottom: 12px;
-            color: #1f2228;
+            font-size: 2.4em;
+            margin-bottom: 15px;
+            color: #f0a8c0;
         }
 
-        .step-card p {
-            margin: 8px 0;
+        /* Ссылка в стиле проекта */
+        .project-link {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 30px;
+            background: var(--bg);
+            border-radius: 40px;
+            box-shadow: 8px 8px 16px var(--shadow-dark),
+                        -8px -8px 16px var(--shadow-light);
+            color: #f0a8c0;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            word-break: break-word;
         }
 
-        /* Сетка команды */
+        .project-link:hover {
+            box-shadow: inset 6px 6px 12px var(--shadow-dark),
+                        inset -6px -6px 12px var(--shadow-light);
+            color: #fff;
+        }
+
         .team-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 25px;
-            margin-top: 30px;
+            gap: 30px;
+            margin-top: 25px;
             width: 100%;
-            max-width: 1000px;
+            max-width: 1100px;
         }
 
         .team-card {
-            background: var(--bg);
+            background: var(--slide-bg, var(--bg));
             border-radius: 25px;
-            padding: 25px 20px 20px;
-            width: 150px;
+            padding: 30px 25px 25px;
+            width: 180px;
             box-shadow: 12px 12px 24px var(--shadow-dark),
                         -12px -12px 24px var(--shadow-light);
             text-align: center;
@@ -197,26 +209,26 @@
         }
 
         .team-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
         }
 
         .team-photo {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: inset 3px 3px 6px var(--shadow-dark),
                         inset -3px -3px 6px var(--shadow-light),
-                        0 8px 16px rgba(0,0,0,0.08);
-            margin-bottom: 12px;
-            background: #dce0e6;
+                        0 8px 16px rgba(0,0,0,0.3);
+            margin-bottom: 18px;
+            background: #2b2540;
         }
 
         .team-name {
-            font-size: 1.15em;
+            font-size: 1.3em;
             font-weight: 700;
-            color: var(--text);
-            margin-bottom: 4px;
+            color: #f0eaff;
+            margin-bottom: 6px;
             text-decoration: none;
             display: inline-block;
             transition: color 0.2s ease, text-shadow 0.2s ease;
@@ -224,23 +236,23 @@
         }
 
         .team-name:hover {
-            color: var(--accent);
-            text-shadow: 0 0 10px rgba(180, 142, 173, 0.4);
+            color: #f0a8c0;
+            text-shadow: 0 0 12px rgba(240, 168, 192, 0.6);
         }
 
         .team-role {
-            font-size: 0.85em;
-            color: #5b5f6a;
-            line-height: 1.3;
+            font-size: 0.95em;
+            color: #a98bff;
+            line-height: 1.4;
         }
 
         .controls {
             position: fixed;
-            bottom: 28px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 25px;
+            gap: 30px;
             z-index: 999;
         }
 
@@ -248,15 +260,14 @@
             background: var(--bg);
             border: none;
             border-radius: 50px;
-            padding: 14px 32px;
-            font-size: 1em;
+            padding: 15px 35px;
+            font-size: 1.1em;
             color: var(--text);
-            box-shadow: 9px 9px 18px var(--shadow-dark),
-                        -9px -9px 18px var(--shadow-light);
+            box-shadow: 8px 8px 16px var(--shadow-dark),
+                        -8px -8px 16px var(--shadow-light);
             cursor: pointer;
             transition: all 0.2s ease;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 600;
+            font-family: inherit;
             letter-spacing: 0.5px;
         }
 
@@ -267,22 +278,21 @@
 
         .indicator {
             position: fixed;
-            bottom: 95px;
+            bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
             color: var(--accent);
             font-size: 0.9em;
             z-index: 999;
-            opacity: 0.85;
-            font-family: 'Nunito', sans-serif;
+            opacity: 0.8;
         }
 
         @media (max-width: 600px) {
             .slide h1 { font-size: 2.8em; }
             .slide h2 { font-size: 2em; }
-            .step-card { padding: 20px; }
+            .step-card h3 { font-size: 1.8em; }
             .team-card { width: 130px; padding: 15px; }
-            .team-photo { width: 75px; height: 75px; }
+            .team-photo { width: 70px; height: 70px; }
         }
     </style>
 </head>
@@ -292,60 +302,60 @@
 
     <div class="slides-container">
         <!-- 1. Вступление -->
-        <div class="slide active" id="slide0">
+        <div class="slide active" id="slide0" style="--slide-bg: #1e1b2e;">
             <h1>Оценка промпт‑инжиниринга</h1>
-            <div class="inset-block">
-                Тестируйте и оценивайте навыки написания AI‑промптов<br>у кандидатов в автоматическом режиме.
+            <div class="inset-box">
+                Тестируйте и оценивайте навыки написания AI‑промптов у кандидатов в автоматическом режиме.
             </div>
         </div>
 
         <!-- 2. Как это работает -->
-        <div class="slide" id="slide1">
+        <div class="slide" id="slide1" style="--slide-bg: #231f35;">
             <h2>Как это работает</h2>
             <div class="step-card">
                 <p>1. Создаёте задание с описанием и контекстом</p>
-                <p>2. Выбираете один из типов: анализ тональности, генерация JD или код‑ревью</p>
-                <p>3. Кандидат пишет промпт — мы автоматически оцениваем</p>
+                <p>2. Выбираете тип: анализ тональности, генерация JD или код‑ревью</p>
+                <p>3. Кандидат пишет промпт — система автоматически оценивает</p>
                 <p>4. Получаете детальную статистику и отчёт</p>
             </div>
         </div>
 
         <!-- 3. Шаг 1 – Создание задания -->
-        <div class="slide" id="slide2">
+        <div class="slide" id="slide2" style="--slide-bg: #1e1b2e;">
             <h2>① Создание задания</h2>
             <div class="step-card">
                 <h3>Что задаёте вы</h3>
                 <p>• Название и описание задачи<br>
                    • Контекст (специфика компании, данные)<br>
                    • Уровень сложности и категорию</p>
-                <p style="margin-top:16px; font-style:italic; color:#4a4f59;">Простая форма за пару кликов.</p>
+                <p style="margin-top:16px; color:#f0a8c0; font-style:italic;">Простая форма за пару кликов.</p>
             </div>
         </div>
 
-        <!-- 4. Шаг 2 – Типы заданий -->
-        <div class="slide" id="slide3">
+        <!-- 4. Типы заданий (без эмодзи) -->
+        <div class="slide" id="slide3" style="--slide-bg: #28223e;">
             <h2>② Типы заданий</h2>
             <div class="step-card">
                 <h3>Три направления</h3>
-                <p>📊 <strong>Анализ тональности</strong> — работа с отзывами</p>
-                <p>📄 <strong>Генерация Job Description</strong> — помощь HR</p>
-                <p>🔍 <strong>AI-код-ревью</strong> — проверка pull‑реквестов</p>
+                <p><strong>Анализ тональности</strong> — работа с отзывами</p>
+                <p><strong>Генерация Job Description</strong> — помощь HR</p>
+                <p><strong>AI-код‑ревью</strong> — проверка pull‑реквестов</p>
             </div>
         </div>
 
         <!-- 5. Шаг 3 – Кандидат пишет промпт -->
-        <div class="slide" id="slide4">
+        <div class="slide" id="slide4" style="--slide-bg: #1e1b2e;">
             <h2>③ Работа кандидата</h2>
             <div class="step-card">
                 <h3>Реальная проверка навыков</h3>
                 <p>Кандидат видит только условие и поле ввода.<br>
                    Никаких подсказок — только его умение формулировать запрос к AI.</p>
-                <p style="margin-top:16px; color:#b48ead;">Креативность + точность = идеальный промпт.</p>
+                <p style="margin-top:16px; color:#f0a8c0;">Креативность + точность = идеальный промпт.</p>
             </div>
         </div>
 
         <!-- 6. Шаг 4 – Автоматическая оценка -->
-        <div class="slide" id="slide5">
+        <div class="slide" id="slide5" style="--slide-bg: #231f35;">
             <h2>④ Автоматическая оценка</h2>
             <div class="step-card">
                 <h3>Критерии</h3>
@@ -353,12 +363,12 @@
                    ✔ Контекстуализация<br>
                    ✔ Структурированность и логика<br>
                    ✔ Конкретность ожидаемого результата<br>
-                   ✔ Использование техник (role, few-shot и др.)</p>
+                   ✔ Использование техник (role, few‑shot и др.)</p>
             </div>
         </div>
 
         <!-- 7. Шаг 5 – Результаты и аналитика -->
-        <div class="slide" id="slide6">
+        <div class="slide" id="slide6" style="--slide-bg: #1e1b2e;">
             <h2>⑤ Результаты и аналитика</h2>
             <div class="step-card">
                 <h3>Прозрачная статистика</h3>
@@ -369,16 +379,19 @@
             </div>
         </div>
 
-        <!-- 8. Приглашение -->
-        <div class="slide" id="slide7">
+        <!-- 8. Приглашение (с ссылкой) -->
+        <div class="slide" id="slide7" style="--slide-bg: #28223e;">
             <h2>Готовы протестировать?</h2>
-            <div class="inset-block">
+            <div class="inset-box">
                 Автоматизируйте оценку кандидатов<br>и находите лучших промпт‑инженеров.
             </div>
+            <a href="https://amusing-nexus-work-flow.base44.app/prompt-assessment" target="_blank" class="project-link">
+                Открыть платформу
+            </a>
         </div>
 
         <!-- 9. Команда -->
-        <div class="slide" id="slide8">
+        <div class="slide" id="slide8" style="--slide-bg: #231f35;">
             <h2>Наша команда</h2>
             <div class="team-grid">
                 <div class="team-card">
@@ -426,9 +439,8 @@
             const indicator = document.getElementById('indicator');
             let isAnimating = false;
 
-            // Частицы под стать палитре
             const particleColors = [
-                '#edf0f3', '#ffffff', '#c4c9d1', '#b48ead', '#d6c9d8', '#9ea3ae', '#dce0e6', '#eae5ed'
+                '#1e1b2e', '#15121f', '#2b2540', '#f0a8c0', '#d9d0f0', '#f0eaff', '#8b9dc3', '#cbc3e8', '#28223e', '#231f35'
             ];
 
             function updateIndicator() {

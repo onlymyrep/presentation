@@ -98,7 +98,7 @@
             opacity: 0;
             padding: 30px;
             color: var(--text);
-            overflow: hidden;  /* убираем прокрутку */
+            overflow: hidden;
         }
 
         .slide.active {
@@ -132,9 +132,23 @@
             font-weight: 400;
         }
 
+        .inset-text {
+            background: var(--bg);
+            border-radius: 25px;
+            padding: 20px 40px;
+            margin: 20px auto;
+            max-width: 700px;
+            box-shadow: inset 8px 8px 16px var(--shadow-dark),
+                        inset -8px -8px 16px var(--shadow-light);
+            font-size: 1.3em;
+            color: #3b3e4a;
+            line-height: 1.5;
+            font-family: 'Nunito', sans-serif;
+        }
+
         .slide img {
             max-width: 90%;
-            max-height: 70vh;   /* ограничиваем высоту для вписывания */
+            max-height: 70vh;
             border-radius: 20px;
             box-shadow: 12px 12px 24px var(--shadow-dark),
                         -12px -12px 24px var(--shadow-light);
@@ -147,7 +161,6 @@
             transform: scale(1.02);
         }
 
-        /* Карточки команды (светлая тема) */
         .team-grid {
             display: flex;
             flex-wrap: wrap;
@@ -262,50 +275,70 @@
     <canvas id="dissolve-canvas"></canvas>
 
     <div class="slides-container">
-        <!-- Слайд 1: Введение -->
+        <!-- Слайд 1: Введение с утопленным текстом -->
         <div class="slide active" id="slide0">
             <h1>Оценка промпт-инжиниринга</h1>
-            <p class="subtitle">Тестируйте и оценивайте навыки написания AI-промптов<br>у кандидатов в автоматическом режиме.</p>
+            <div class="inset-text">
+                Тестируйте и оценивайте навыки написания AI‑промптов<br>у кандидатов в автоматическом режиме.
+            </div>
         </div>
 
-        <!-- Слайд 2: Общий вид заданий -->
+        <!-- Слайд 2: Обзор заданий -->
         <div class="slide" id="slide1">
-            <img src="слайд2.png" alt="Общий вид заданий">
-            <p class="subtitle">📋 Обзор всех типов заданий</p>
+            <img src="слайд2.png" alt="Обзор заданий">
+            <p class="subtitle">📋 Карта всех типов заданий</p>
         </div>
 
-        <!-- Слайд 3: Задание "Анализ тональности" -->
+        <!-- Слайд 3: Новое задание (форма) -->
         <div class="slide" id="slide2">
-            <img src="слайд3.png" alt="Задание: анализ тональности отзывов">
+            <img src="новоезадание.png" alt="Форма создания задания">
+            <p class="subtitle">➕ Создание нового задания</p>
+        </div>
+
+        <!-- Слайд 4: Задание «Анализ тональности» -->
+        <div class="slide" id="slide3">
+            <img src="слайд3.png" alt="Задание: анализ тональности">
             <p class="subtitle">✏️ Задание: Анализ тональности отзывов</p>
         </div>
 
-        <!-- Слайд 4: Результат Полины -->
-        <div class="slide" id="slide3">
-            <img src="слайд4.png" alt="Результат Полины 45/100">
-            <p class="subtitle">📊 Результат кандидата (Анализ тональности)</p>
+        <!-- Слайд 5: Результат Алсини (анализ тональности) -->
+        <div class="slide" id="slide4">
+            <img src="результаталсиня.png" alt="Результат Алсини 35/100">
+            <p class="subtitle">📊 Результат Алсини — 35/100</p>
         </div>
 
-        <!-- Слайд 5: Задание "Генерация JD" -->
-        <div class="slide" id="slide4">
-            <img src="слайд5.png" alt="Задание: генерация Job Description">
+        <!-- Слайд 6: Задание «Генерация JD» -->
+        <div class="slide" id="slide5">
+            <img src="слайд5.png" alt="Задание: генерация JD">
             <p class="subtitle">✏️ Задание: Генерация Job Description</p>
         </div>
 
-        <!-- Слайд 6: Результат Анны (новый) -->
-        <div class="slide" id="slide5">
-            <img src="слайд7.png" alt="Результат Анны 30/100">
-            <p class="subtitle">📊 Результат кандидата (Генерация JD)</p>
+        <!-- Слайд 7: Результат Расили (JD) -->
+        <div class="slide" id="slide6">
+            <img src="результатрасиля.png" alt="Результат Расили 15/100">
+            <p class="subtitle">📊 Результат Расили — 15/100</p>
         </div>
 
-        <!-- Слайд 7: Статистика -->
-        <div class="slide" id="slide6">
-            <img src="слайд6.png" alt="Статистика ответов">
+        <!-- Слайд 8: Задание «AI-код-ревью» (сложное) -->
+        <div class="slide" id="slide7">
+            <img src="промптильяс.png" alt="Задание: код-ревью">
+            <p class="subtitle">✏️ Задание: AI-ассистент для код-ревью</p>
+        </div>
+
+        <!-- Слайд 9: Результат Ильяса (код-ревью) -->
+        <div class="slide" id="slide8">
+            <img src="результатильяс.png" alt="Результат Ильяса 15/100">
+            <p class="subtitle">📊 Результат Ильяса — 15/100</p>
+        </div>
+
+        <!-- Слайд 10: Общая статистика -->
+        <div class="slide" id="slide9">
+            <img src="результаты.png" alt="Сводка всех результатов">
             <p class="subtitle">📈 Сводка по всем кандидатам</p>
         </div>
 
-        <!-- Слайд 8: Команда -->
-        <div class="slide" id="slide7">
+        <!-- Слайд 11: Команда -->
+        <div class="slide" id="slide10">
             <h2>Наша команда</h2>
             <div class="team-grid">
                 <div class="team-card">
@@ -337,7 +370,7 @@
         </div>
     </div>
 
-    <div class="indicator" id="indicator">Слайд 1 / 8</div>
+    <div class="indicator" id="indicator">Слайд 1 / 11</div>
     <div class="controls">
         <button class="btn" id="prevBtn">← Назад</button>
         <button class="btn" id="nextBtn">Вперёд →</button>

@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #ecf0f3;
-            --shadow-dark: #d1d9e6;
-            --shadow-light: #ffffff;
-            --text: #5b6e7e;
-            --accent: #8b9dc3;
+            --bg: #1e1b2e;           /* насыщенный тёмно-фиолетовый */
+            --shadow-dark: #15121f;  /* глубокая тень */
+            --shadow-light: #2b2540; /* светлый фиолетовый отлив */
+            --text: #d9d0f0;         /* мягкий светлый текст */
+            --accent: #a98bff;       /* нежный фиолетовый акцент */
             --radius: 30px;
         }
 
@@ -23,7 +23,8 @@
 
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: var(--bg);
+            /* Градиентный фон с еле заметным свечением – чтобы слайды не сливались */
+            background: linear-gradient(145deg, #2a2440 0%, #15121f 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -31,6 +32,31 @@
             overflow: hidden;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
+            position: relative;
+        }
+
+        /* Декоративные размытые пятна на фоне */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(circle at 30% 40%, rgba(169, 139, 255, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -15%;
+            right: -5%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle at 70% 60%, rgba(139, 157, 195, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         #dissolve-canvas {
@@ -46,10 +72,11 @@
 
         .slides-container {
             position: relative;
-            width: 95%;               /* было 90%  – растянет по горизонтали */
-            max-width: none;          /* убираем ограничение 900px */
-            height: 90vh;             /* было 70% / max-height 600px – теперь 90% высоты окна */
-            max-height: none;         /* убираем ограничение 600px */
+            width: 95%;
+            max-width: none;
+            height: 90vh;
+            max-height: none;
+            z-index: 1;
         }
 
         .slide {
@@ -65,14 +92,14 @@
             text-align: center;
             border-radius: var(--radius);
             background: var(--bg);
-            box-shadow: 13px 13px 26px var(--shadow-dark),
-                        -13px -13px 26px var(--shadow-light);
+            box-shadow: 18px 18px 36px var(--shadow-dark),
+                        -18px -18px 36px var(--shadow-light);
             transition: opacity 0.3s ease;
             visibility: hidden;
             opacity: 0;
             padding: 40px;
             color: var(--text);
-            overflow-y: auto; /* на случай, если контента много */
+            overflow-y: auto;
         }
 
         .slide.active {
@@ -84,22 +111,23 @@
             font-size: 2.8em;
             font-weight: 700;
             margin-bottom: 20px;
-            color: #2c3e50;
+            color: #f0eaff;
         }
 
         .slide h2 {
             font-size: 2em;
             font-weight: 400;
             margin-bottom: 15px;
+            color: #d9d0f0;
         }
 
         .slide p {
             font-size: 1.2em;
             line-height: 1.6;
             max-width: 600px;
+            color: #cbc3e8;
         }
 
-        /* Стили для изображений на слайдах */
         .slide img {
             max-width: 80%;
             max-height: 50vh;
@@ -162,55 +190,44 @@
     <canvas id="dissolve-canvas"></canvas>
 
     <div class="slides-container">
-        <!-- Слайд 0 -->
         <div class="slide active" id="slide0">
             <h1>Твоя презентация ✨</h1>
-            <p>10 слайдов в стиле <strong>мягкого неоморфизма</strong><br>с эффектом из «Мстителей».</p>
+            <p>10 слайдов в стиле <strong>фиолетового неоморфизма</strong><br>с эффектом из «Мстителей».</p>
         </div>
-        <!-- Слайд 1 -->
         <div class="slide" id="slide1">
-            <h2>Как это выглядит</h2>
-            <p>Мягкие тени, трёхмерные формы,<br>приятная цветовая гамма.</p>
+            <h2>Тёмная элегантность</h2>
+            <p>Глубокие фиолетовые оттенки,<br>мягкие тени и таинственное сияние.</p>
         </div>
-        <!-- Слайд 2 -->
         <div class="slide" id="slide2">
             <h2>Растворение в пыль</h2>
-            <p>При перелистывании слайд рассыпается<br>на тысячи частиц.</p>
+            <p>При перелистывании слайд рассыпается<br>на тысячи мерцающих частиц.</p>
         </div>
-        <!-- Слайд 3 -->
         <div class="slide" id="slide3">
             <h2>Пример со скриншотом</h2>
-            <!-- Вместо этого placeholder'а вставь свой скриншот -->
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23d1d9e6'/%3E%3Ctext x='200' y='135' font-family='Nunito' font-size='24' fill='%235b6e7e' text-anchor='middle'%3EТвой скриншот%3C/text%3E%3C/svg%3E" 
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%232b2540'/%3E%3Ctext x='200' y='135' font-family='Nunito' font-size='24' fill='%23d9d0f0' text-anchor='middle'%3EТвой скриншот%3C/text%3E%3C/svg%3E" 
                  alt="Пример скриншота">
             <p>Сюда можно вставить любой скриншот<br>или изображение.</p>
         </div>
-        <!-- Слайд 4 -->
         <div class="slide" id="slide4">
             <h2>Простота редактирования</h2>
             <p>Текст и картинки меняются<br>прямо в HTML-коде.</p>
         </div>
-        <!-- Слайд 5 -->
         <div class="slide" id="slide5">
             <h2>Адаптивность</h2>
             <p>Отлично смотрится на телефоне,<br>планшете и компьютере.</p>
         </div>
-        <!-- Слайд 6 -->
         <div class="slide" id="slide6">
             <h2>Никакого интернета</h2>
             <p>Презентация работает полностью офлайн,<br>даже эффект частиц.</p>
         </div>
-        <!-- Слайд 7 -->
         <div class="slide" id="slide7">
             <h2>Легко задеплоить</h2>
             <p>Загрузи на GitHub Pages —<br>и получишь ссылку для всех.</p>
         </div>
-        <!-- Слайд 8 -->
         <div class="slide" id="slide8">
             <h2>Настрой свой стиль</h2>
             <p>Меняй цвета, шрифты, размеры<br>в блоке :root.</p>
         </div>
-        <!-- Слайд 9 -->
         <div class="slide" id="slide9">
             <h2>Вперёд к волшебству!</h2>
             <p>Теперь ты можешь удивлять<br>своих зрителей.</p>
@@ -233,21 +250,13 @@
             const indicator = document.getElementById('indicator');
             let isAnimating = false;
 
-            // Цвета частиц под стать неоморфизму
+            // Цвета частиц в тон новой теме
             const particleColors = [
-                '#ecf0f3', '#d1d9e6', '#ffffff', '#8b9dc3', '#5b6e7e', '#2c3e50'
+                '#1e1b2e', '#15121f', '#2b2540', '#a98bff', '#d9d0f0', '#f0eaff', '#8b9dc3'
             ];
 
             function updateIndicator() {
                 indicator.textContent = `Слайд ${currentIndex + 1} / ${totalSlides}`;
-            }
-
-            function switchSlide(targetIndex) {
-                if (targetIndex < 0 || targetIndex >= totalSlides || targetIndex === currentIndex) return;
-                slides[currentIndex].classList.remove('active');
-                slides[targetIndex].classList.add('active');
-                currentIndex = targetIndex;
-                updateIndicator();
             }
 
             function dissolveToNext(targetIndex) {
@@ -283,7 +292,6 @@
                     });
                 }
 
-                // Переключаем слайды под холстом
                 slides[currentIndex].classList.remove('active');
                 slides[targetIndex].classList.add('active');
 

@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #1e1b2e;           /* насыщенный тёмно-фиолетовый */
-            --shadow-dark: #15121f;  /* глубокая тень */
-            --shadow-light: #2b2540; /* светлый фиолетовый отлив */
-            --text: #d9d0f0;         /* мягкий светлый текст */
-            --accent: #a98bff;       /* нежный фиолетовый акцент */
+            --bg: #1e1b2e;
+            --shadow-dark: #15121f;
+            --shadow-light: #2b2540;
+            --text: #d9d0f0;
+            --accent: #a98bff;
             --radius: 30px;
         }
 
@@ -23,7 +23,6 @@
 
         body {
             font-family: 'Nunito', sans-serif;
-            /* Градиентный фон с еле заметным свечением – чтобы слайды не сливались */
             background: linear-gradient(145deg, #2a2440 0%, #15121f 100%);
             display: flex;
             align-items: center;
@@ -35,7 +34,7 @@
             position: relative;
         }
 
-        /* Декоративные размытые пятна на фоне */
+        /* Свечение на фоне */
         body::before {
             content: '';
             position: fixed;
@@ -91,7 +90,7 @@
             justify-content: center;
             text-align: center;
             border-radius: var(--radius);
-            background: var(--bg);
+            background: var(--slide-bg, var(--bg)); /* каждый слайд может иметь свой фон */
             box-shadow: 18px 18px 36px var(--shadow-dark),
                         -18px -18px 36px var(--shadow-light);
             transition: opacity 0.3s ease;
@@ -137,6 +136,22 @@
             margin: 20px 0;
         }
 
+        /* Вдавленная панель (можно использовать внутри слайда) */
+        .inset-box {
+            background: var(--slide-bg, var(--bg));
+            border-radius: 25px;
+            padding: 20px 30px;
+            margin: 20px 0;
+            box-shadow: inset 8px 8px 16px var(--shadow-dark),
+                        inset -8px -8px 16px var(--shadow-light);
+            max-width: 600px;
+        }
+
+        .inset-box p {
+            margin: 0;
+        }
+
+        /* Кнопки управления */
         .controls {
             position: fixed;
             bottom: 30px;
@@ -190,47 +205,50 @@
     <canvas id="dissolve-canvas"></canvas>
 
     <div class="slides-container">
-        <div class="slide active" id="slide0">
+        <!-- Каждый слайд со своим оттенком фона -->
+        <div class="slide active" id="slide0" style="--slide-bg: #1e1b2e;">
             <h1>Твоя презентация ✨</h1>
-            <p>10 слайдов в стиле <strong>фиолетового неоморфизма</strong><br>с эффектом из «Мстителей».</p>
+            <p>10 слайдов в стиле <strong>живого неоморфизма</strong><br>с эффектом из «Мстителей».</p>
         </div>
-        <div class="slide" id="slide1">
-            <h2>Тёмная элегантность</h2>
-            <p>Глубокие фиолетовые оттенки,<br>мягкие тени и таинственное сияние.</p>
+        <div class="slide" id="slide1" style="--slide-bg: #231f35;">
+            <h2>Глубина цвета</h2>
+            <p>Каждый слайд имеет свой фиолетовый оттенок,<br>сохраняя мягкие тени.</p>
         </div>
-        <div class="slide" id="slide2">
+        <div class="slide" id="slide2" style="--slide-bg: #1e1b2e;">
             <h2>Растворение в пыль</h2>
             <p>При перелистывании слайд рассыпается<br>на тысячи мерцающих частиц.</p>
         </div>
-        <div class="slide" id="slide3">
+        <div class="slide" id="slide3" style="--slide-bg: #28223e;">
             <h2>Пример со скриншотом</h2>
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%232b2540'/%3E%3Ctext x='200' y='135' font-family='Nunito' font-size='24' fill='%23d9d0f0' text-anchor='middle'%3EТвой скриншот%3C/text%3E%3C/svg%3E" 
                  alt="Пример скриншота">
             <p>Сюда можно вставить любой скриншот<br>или изображение.</p>
         </div>
-        <div class="slide" id="slide4">
-            <h2>Простота редактирования</h2>
-            <p>Текст и картинки меняются<br>прямо в HTML-коде.</p>
+        <div class="slide" id="slide4" style="--slide-bg: #1e1b2e;">
+            <h2>Вдавленные акценты</h2>
+            <div class="inset-box">
+                <p>Этот блок будто утоплен в слайд.<br>Прекрасно подходит для цитат и важных мыслей.</p>
+            </div>
         </div>
-        <div class="slide" id="slide5">
-            <h2>Адаптивность</h2>
+        <div class="slide" id="slide5" style="--slide-bg: #231f35;">
+            <h2>Полная адаптивность</h2>
             <p>Отлично смотрится на телефоне,<br>планшете и компьютере.</p>
         </div>
-        <div class="slide" id="slide6">
-            <h2>Никакого интернета</h2>
-            <p>Презентация работает полностью офлайн,<br>даже эффект частиц.</p>
+        <div class="slide" id="slide6" style="--slide-bg: #1e1b2e;">
+            <h2>Офлайн‑магия</h2>
+            <p>Презентация работает без интернета,<br>включая эффект частиц.</p>
         </div>
-        <div class="slide" id="slide7">
-            <h2>Легко задеплоить</h2>
-            <p>Загрузи на GitHub Pages —<br>и получишь ссылку для всех.</p>
+        <div class="slide" id="slide7" style="--slide-bg: #28223e;">
+            <h2>Деплой на GitHub Pages</h2>
+            <p>Загрузи один файл —<br>и получишь ссылку для всего мира.</p>
         </div>
-        <div class="slide" id="slide8">
-            <h2>Настрой свой стиль</h2>
-            <p>Меняй цвета, шрифты, размеры<br>в блоке :root.</p>
+        <div class="slide" id="slide8" style="--slide-bg: #1e1b2e;">
+            <h2>Гибкая настройка</h2>
+            <p>Меняй цвета в :root,<br>добавляй свои слайды и картинки.</p>
         </div>
-        <div class="slide" id="slide9">
-            <h2>Вперёд к волшебству!</h2>
-            <p>Теперь ты можешь удивлять<br>своих зрителей.</p>
+        <div class="slide" id="slide9" style="--slide-bg: #231f35;">
+            <h2>Твори смело!</h2>
+            <p>Теперь у тебя есть инструмент,<br>чтобы удивлять по‑настоящему.</p>
         </div>
     </div>
 
@@ -250,9 +268,9 @@
             const indicator = document.getElementById('indicator');
             let isAnimating = false;
 
-            // Цвета частиц в тон новой теме
+            // Обновлённая палитра частиц
             const particleColors = [
-                '#1e1b2e', '#15121f', '#2b2540', '#a98bff', '#d9d0f0', '#f0eaff', '#8b9dc3'
+                '#1e1b2e', '#15121f', '#2b2540', '#a98bff', '#d9d0f0', '#f0eaff', '#8b9dc3', '#cbc3e8', '#28223e', '#231f35'
             ];
 
             function updateIndicator() {

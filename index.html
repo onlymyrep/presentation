@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Оценка промпт-инжиниринга ✍️</title>
-    <!-- Рукописный шрифт Caveat -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -36,7 +35,6 @@
             position: relative;
         }
 
-        /* Лёгкие декоративные пятна на фоне */
         body::before {
             content: '';
             position: fixed;
@@ -100,7 +98,7 @@
             opacity: 0;
             padding: 30px;
             color: var(--text);
-            overflow-y: auto;
+            overflow: hidden;  /* убираем прокрутку */
         }
 
         .slide.active {
@@ -108,7 +106,6 @@
             opacity: 1;
         }
 
-        /* Рукописный шрифт для заголовков и ключевого текста */
         .slide h1, .slide h2, .slide .handwritten {
             font-family: 'Caveat', cursive;
             font-weight: 700;
@@ -127,26 +124,87 @@
             color: #3b3e4a;
         }
 
-        .slide p {
-            font-size: 1.3em;
-            line-height: 1.5;
-            max-width: 700px;
+        .slide .subtitle {
+            font-size: 1.2em;
             color: #5a5e6b;
+            margin-top: 10px;
             font-family: 'Nunito', sans-serif;
+            font-weight: 400;
         }
 
         .slide img {
             max-width: 90%;
-            max-height: 75vh;
+            max-height: 70vh;   /* ограничиваем высоту для вписывания */
             border-radius: 20px;
             box-shadow: 12px 12px 24px var(--shadow-dark),
                         -12px -12px 24px var(--shadow-light);
-            margin: 20px 0;
+            margin: 10px 0;
+            object-fit: contain;
             transition: transform 0.2s ease;
         }
 
         .slide img:hover {
             transform: scale(1.02);
+        }
+
+        /* Карточки команды (светлая тема) */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .team-card {
+            background: var(--bg);
+            border-radius: 25px;
+            padding: 25px 20px 20px;
+            width: 150px;
+            box-shadow: 12px 12px 24px var(--shadow-dark),
+                        -12px -12px 24px var(--shadow-light);
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .team-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: inset 3px 3px 6px var(--shadow-dark),
+                        inset -3px -3px 6px var(--shadow-light),
+                        0 8px 16px rgba(0,0,0,0.1);
+            margin-bottom: 12px;
+            background: #e0e4ed;
+        }
+
+        .team-name {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.2s ease, text-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .team-name:hover {
+            color: var(--accent);
+            text-shadow: 0 0 8px rgba(139, 143, 212, 0.3);
+        }
+
+        .team-role {
+            font-size: 0.85em;
+            color: #6b6f7c;
+            line-height: 1.3;
         }
 
         .controls {
@@ -194,7 +252,8 @@
         @media (max-width: 600px) {
             .slide h1 { font-size: 2.5em; }
             .slide h2 { font-size: 1.8em; }
-            .slide p { font-size: 1em; }
+            .team-card { width: 130px; padding: 15px; }
+            .team-photo { width: 70px; height: 70px; }
         }
     </style>
 </head>
@@ -206,36 +265,79 @@
         <!-- Слайд 1: Введение -->
         <div class="slide active" id="slide0">
             <h1>Оценка промпт-инжиниринга</h1>
-            <p>Тестируйте и оценивайте навыки написания AI-промптов<br>у кандидатов в автоматическом режиме.</p>
+            <p class="subtitle">Тестируйте и оценивайте навыки написания AI-промптов<br>у кандидатов в автоматическом режиме.</p>
         </div>
 
-        <!-- Слайд 2: Общий вид заданий (слайд2.png) -->
+        <!-- Слайд 2: Общий вид заданий -->
         <div class="slide" id="slide1">
             <img src="слайд2.png" alt="Общий вид заданий">
+            <p class="subtitle">📋 Обзор всех типов заданий</p>
         </div>
 
-        <!-- Слайд 3: Задание "Анализ тональности" (слайд3.png) -->
+        <!-- Слайд 3: Задание "Анализ тональности" -->
         <div class="slide" id="slide2">
             <img src="слайд3.png" alt="Задание: анализ тональности отзывов">
+            <p class="subtitle">✏️ Задание: Анализ тональности отзывов</p>
         </div>
 
-        <!-- Слайд 4: Результат кандидата (слайд4.png) -->
+        <!-- Слайд 4: Результат Полины -->
         <div class="slide" id="slide3">
-            <img src="слайд4.png" alt="Результат оценки: 45/100">
+            <img src="слайд4.png" alt="Результат Полины 45/100">
+            <p class="subtitle">📊 Результат кандидата (Анализ тональности)</p>
         </div>
 
-        <!-- Слайд 5: Задание "Генерация Job Description" (слайд5.png) -->
+        <!-- Слайд 5: Задание "Генерация JD" -->
         <div class="slide" id="slide4">
-            <img src="слайд5.png" alt="Задание: генерация JD">
+            <img src="слайд5.png" alt="Задание: генерация Job Description">
+            <p class="subtitle">✏️ Задание: Генерация Job Description</p>
         </div>
 
-        <!-- Слайд 6: Общая статистика (слайд6.png) -->
+        <!-- Слайд 6: Результат Анны (новый) -->
         <div class="slide" id="slide5">
-            <img src="слайд6.png" alt="Статистика ответов кандидатов">
+            <img src="слайд7.png" alt="Результат Анны 30/100">
+            <p class="subtitle">📊 Результат кандидата (Генерация JD)</p>
+        </div>
+
+        <!-- Слайд 7: Статистика -->
+        <div class="slide" id="slide6">
+            <img src="слайд6.png" alt="Статистика ответов">
+            <p class="subtitle">📈 Сводка по всем кандидатам</p>
+        </div>
+
+        <!-- Слайд 8: Команда -->
+        <div class="slide" id="slide7">
+            <h2>Наша команда</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="ilyas.jpg" alt="Ильяс" class="team-photo">
+                    <a href="https://github.com/onlymyrep" target="_blank" class="team-name">Ильяс</a>
+                    <div class="team-role">Технический лид</div>
+                </div>
+                <div class="team-card">
+                    <img src="anna.jpg" alt="Анна" class="team-photo">
+                    <a href="https://github.com/apich16" target="_blank" class="team-name">Анна</a>
+                    <div class="team-role">ML-инженер</div>
+                </div>
+                <div class="team-card">
+                    <img src="alsinya.jpg" alt="Алсиня" class="team-photo">
+                    <a href="https://github.com/Alsva6" target="_blank" class="team-name">Алсиня</a>
+                    <div class="team-role">Специалист по компьютерному зрению</div>
+                </div>
+                <div class="team-card">
+                    <img src="rasilya.jpg" alt="Расиля" class="team-photo">
+                    <a href="https://github.com/rasilya" target="_blank" class="team-name">Расиля</a>
+                    <div class="team-role">Продукт-менеджер</div>
+                </div>
+                <div class="team-card">
+                    <img src="polina.jpg" alt="Полина" class="team-photo">
+                    <a href="https://github.com/pllinss" target="_blank" class="team-name">Полина</a>
+                    <div class="team-role">Бизнес-аналитик</div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="indicator" id="indicator">Слайд 1 / 6</div>
+    <div class="indicator" id="indicator">Слайд 1 / 8</div>
     <div class="controls">
         <button class="btn" id="prevBtn">← Назад</button>
         <button class="btn" id="nextBtn">Вперёд →</button>
@@ -251,7 +353,6 @@
             const indicator = document.getElementById('indicator');
             let isAnimating = false;
 
-            // Цвета частиц под светлую тему (мягкие, пастельные)
             const particleColors = [
                 '#f2f4f8', '#ffffff', '#d9dfe8', '#8b8fd4', '#b4b9e6', '#c5cae9', '#e8eaf6'
             ];
@@ -323,14 +424,10 @@
                 animate();
             }
 
-            document.getElementById('nextBtn').addEventListener('click', function() {
-                dissolveToNext(currentIndex + 1);
-            });
-            document.getElementById('prevBtn').addEventListener('click', function() {
-                dissolveToNext(currentIndex - 1);
-            });
+            document.getElementById('nextBtn').addEventListener('click', () => dissolveToNext(currentIndex + 1));
+            document.getElementById('prevBtn').addEventListener('click', () => dissolveToNext(currentIndex - 1));
 
-            window.addEventListener('keydown', function(e) {
+            window.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowRight' || e.key === 'Right' || e.key === ' ') {
                     e.preventDefault();
                     dissolveToNext(currentIndex + 1);
@@ -341,10 +438,10 @@
             });
 
             let touchStartX = 0;
-            window.addEventListener('touchstart', function(e) {
+            window.addEventListener('touchstart', (e) => {
                 touchStartX = e.touches[0].clientX;
             }, {passive: true});
-            window.addEventListener('touchend', function(e) {
+            window.addEventListener('touchend', (e) => {
                 const diff = e.changedTouches[0].clientX - touchStartX;
                 if (Math.abs(diff) > 50) {
                     if (diff < 0) dissolveToNext(currentIndex + 1);
